@@ -1,0 +1,236 @@
+/* colorKaeser #fdd302 */  
+/* colorFondo #212529*/
+
+/*Estilos Generales*/
+.btn-style{
+    background-color: #fdd302;
+    text-align: center;
+    font-size: 1rem;
+    width: 7rem;
+    padding: 5px;
+    border: 1px solid #fdd302;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-style:hover{
+    background-color: #fcd92b;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border: 0 ;
+    background-color: #212529 !important; 
+}
+
+h1, h2, h3{
+    text-align: center;
+    padding-top: 1.5rem;
+    color: white !important;
+}
+
+p{
+    color: white;
+}
+/*Estilos Específicos*/
+header{
+    background-color: #fdd302;
+    padding: 5px; 
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+}
+
+header img{
+    padding: 5px 10px;
+    width: 180px;
+}
+
+#options{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#options #search{
+    border: 2px solid white;
+    border-radius: 12px;
+}
+
+#options .bi-search{
+    font-size: 1.1rem;
+    padding-left: 2px;
+}
+
+.buscar{
+    background-color: white;
+    color: #212529;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 2px solid #fcd92b;
+}
+
+.buscar:hover{
+    border: 2px solid black;
+    background-color: #e9c200;
+    transition: 0.5s;
+}
+
+.dropdown{
+    font-size: 2.5rem;
+    padding: 0px 10px;
+    color: #212529;
+}
+
+.dropdown:hover{
+    color: black;
+}
+
+.dropdown .dropdown-item:hover{
+    background-color: #fdd302;
+    color: black;
+    font-weight: 600;
+}
+
+#login{
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.welcome{
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+#login .welcome p{
+    color: white !important;
+}
+#login h2{
+    padding-top: 30px;
+    font-size: 1.6rem;
+    color: black !important;
+}
+
+.ingreso{
+    background-color: white;
+    padding-bottom: 20px;
+    border-radius: 12px;
+    border: 4px solid #fdd302;
+}
+
+#login .ingreso form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+label{
+    display: flex !important;
+    flex-direction: column;
+}
+
+#user, #password{
+    color: white;
+}
+
+label span{
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+label input{
+    border: none;
+    border: 2px solid #fdd302;
+    background-color: #212529;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+label input:hover{
+    border: 2px solid #fdd302;
+}
+
+
+label input:focus{
+    box-shadow: 0 0 10px #fdd302;
+}
+
+.ingreso #ingreso{
+    font-weight: 600;
+}
+
+#home{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 2rem;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 0;
+    gap: 5px;
+}
+
+.activos{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 12px;
+    border: 2px solid #fdd302;
+}
+
+.activos h3{
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.activos h3, p{
+    text-align: center;
+    color: black !important;
+}
+
+.activos .cards{
+    padding: 0 20px;
+}
+
+.activos .cards .card{
+    text-align: center;
+    align-items: center;
+}
+
+.activos .cards img{
+    width: 50%;
+}
+
+.activos .cards .card .buttons{
+    padding: 0;
+}
+
+.activos .buttons{
+    width: 100%;
+    padding-right: 2rem;
+}
+
+#home .forms .modal .modal-dialog .modal-content .modal-header h4{
+    color: black !important;
+    width: 100%;
+    text-align: center;
+}
+
+#home .forms .modal .modal-dialog .modal-content .modal-footer .footer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#home .forms .modal .modal-dialog .modal-content .modal-footer .footer button{
+    padding: 3px;
+}
