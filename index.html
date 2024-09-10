@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Kaeser</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <!--Pasar el header al archivo de header al momento de tenerlo en AppScript-->
+    <header>
+        <img src="https://cdn.worldvectorlogo.com/logos/kaeser-kompressoren-logo.svg" alt="Logo-Kaeser">
+        <div id="options">
+            <!--busqueda solo lo podrán ver ciertas personas-->
+            <div id="busqueda">
+                <input type="search" name="search" id="search" placeholder="Buscar Activos" aria-keyshortcuts="enter">
+                <button type="button" class="buscar">Buscar <i class="bi bi-search"></i></button>
+            </div>
+            <!--Para mirar al usuario y cerrr sesión-->
+            <div class="dropdown">
+                <div class="dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="#">Reportar</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                </ul>
+              </div>
+        </div>
+    </header>
+    <!-- <section id= "login">
+        <div class="welcome">
+            <h1>Inventario de Activos Kaeser</h1>
+            <p>Bienvenido a la plataforma de Activos, en este sitio podrás consultar, repotar e informar sobre los activos que están a tu nombre. Ingresa tus credenciales e ingresa a la plaforma.</p>
+        </div>
+        <div class="ingreso">
+            <h2>Ingreso a la Plataforma</h2>
+            <form action="#" method="post">
+                <label for="user">
+                    <span>Usuario</span>
+                    <input type="text" name="user" id="user">
+                </label>
+                <label for="password">
+                    <span>Contraseña</span>
+                    <input type="password" name="password" id="password">
+                </label>
+            </form>
+            <button id="ingreso" class="btn-style">Ingresar</button>
+        </div>
+    </section> -->
+    <section id="home">
+        <h1>Ambiente de Activos</h1>
+        <div class="buttons">
+            <!--Botón de Solicitar un Activo-->
+            <button type="button" id="solicitud" class="btn-style" data-bs-toggle="modal" data-bs-target="#SolicitudActivos" data-bs-whatever="@mdo">Solicitar</button>
+            <!--Botón de Solicitar el Préstamo de un Activo-->
+            <button type="button" id="prestamo" class="btn-style" data-bs-toggle="modal" data-bs-target="#SolicitudPrestamo" data-bs-whatever="@mdo">Préstamo</button>
+            <!--Botón para asignarle un activo a una persona-->
+            <button type="button" id="asignar" class="btn-style" data-bs-toggle="modal" data-bs-target="#AsignarActivo" data-bs-whatever="@mdo">Asignar</button>
+            <!--Botón para reasignar un activo de una persona a otra-->
+            <button type="button" id="reasignar" class="btn-style" data-bs-toggle="modal" data-bs-target="#ReasignarActivo" data-bs-whatever="@mdo">Reasignar</button>
+            <!--Botón para ingresar nuevos activos a la plataforma-->
+            <button type="button" id="nuevo" class="btn-style" data-bs-toggle="modal" data-bs-target="#NuevoActivo" data-bs-whatever="@mdo">Nuevo</button>
+        </div>
+        <div class="forms">
+            <!--Formulario para llenar la solicitud del activo-->
+            <div class="modal fade" id="SolicitudActivos" tabindex="-1" aria-labelledby="SolicitudActivos" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Solicitar un Activo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <label for="validationDefault04" class="form-label">Tipo de Activo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Celular</option>
+                                  <option>Computador</option>
+                                  <option>Pantalla</option>
+                                  <option>Diademas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="validationDefault02" class="form-label">Cantidad</label>
+                              <input type="number" class="form-control" id="validationDefault02" placeholder="#" required>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="validationDefaultUsername" class="form-label">Jefe del Área</label>
+                              <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault04" class="form-label">Sucursal</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Bogotá</option>
+                                  <option>Barranquilla</option>
+                                  <option>Medellín</option>
+                                  <option>Bucaramanga</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="validationTextarea" class="form-label">Motivo de la Solicitud</label>
+                                <textarea class="form-control" id="validationTextarea" placeholder="Escribe el motivo de la solicitud" required></textarea>
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer col-12">
+                            <button class="btn-style" type="submit">Solicitar</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Formulario para llenar la solicitud de préstamo de un activo-->
+            <div class="modal fade" id="SolicitudPrestamo" tabindex="-1" aria-labelledby="SolicitudPrestamo" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Solicitud de Préstamo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <label for="validationDefault04" class="form-label">Tipo de Activo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Celular</option>
+                                  <option>Computador</option>
+                                  <option>Pantalla</option>
+                                  <option>Diademas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="validationDefault02" class="form-label">Cantidad</label>
+                              <input type="number" class="form-control" id="validationDefault02" placeholder="#" required>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="validationDefaultUsername" class="form-label">Jefe del Área</label>
+                              <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Sucursal</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Bogotá</option>
+                                  <option>Barranquilla</option>
+                                  <option>Medellín</option>
+                                  <option>Bucaramanga</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault02" class="form-label">Fecha de Entrega</label>
+                                <input type="date" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationTextarea" class="form-label">Motivo de la Solicitud</label>
+                                <textarea class="form-control" id="validationTextarea" placeholder="Escribe el motivo de la solicitud" required></textarea>
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer col-12">
+                            <button class="btn-style" type="submit">Solicitar</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Formulario para asignarle un activo a una persona-->
+            <div class="modal fade" id="AsignarActivo" tabindex="-1" aria-labelledby="AsignarActivo" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Asignar un Activo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <label for="validationDefaultUsername" class="form-label">Usuario</label>
+                                <div class="input-group">
+                                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                  <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault04" class="form-label">Persona a Cargo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Lucho Díaz</option>
+                                  <option>Rafael Santos</option>
+                                  <option>Diana Romero</option>
+                                  <option>Felipe Garzón</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="validationDefault02" class="form-label">Fecha</label>
+                              <input type="date" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault04" class="form-label">Tipo de Activo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option></option>
+                                  <option></option>
+                                  <option></option>
+                                  <option>..</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="validationDefaultUsername" class="form-label">Seleccionar Activo</label>
+                                <div class="input-group">
+                                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                  <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Sucursal</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Bogotá</option>
+                                  <option>Barranquilla</option>
+                                  <option>Medellín</option>
+                                  <option>Bucaramanga</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="validationDefaultUsername" class="form-label">Jefe del Área</label>
+                              <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <label for="validationDefaultUsername" class="form-label">Documento a Firmar</label>
+                                <input type="file" class="form-control" aria-label="file example" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer col-12">
+                            <button class="btn-style" type="submit">Asignar</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Formulario para reasignar un activo de una persona a otra-->
+            <div class="modal fade" id="ReasignarActivo" tabindex="-1" aria-labelledby="ReasignarActivo" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Reasignar un Activo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <label for="validationDefaultUsername" class="form-label">Usuario</label>
+                                <div class="input-group">
+                                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                  <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault04" class="form-label">Persona a Cargo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Lucho Díaz</option>
+                                  <option>Rafael Santos</option>
+                                  <option>Diana Romero</option>
+                                  <option>Felipe Garzón</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="validationDefault02" class="form-label">Fecha</label>
+                              <input type="date" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="validationDefaultUsername" class="form-label">Reasignar Activo DE:</label>
+                                <div class="input-group">
+                                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                  <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" placeholder="Seleccione a quien se le quitará">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault04" class="form-label">Escoger el activo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option></option>
+                                  <option></option>
+                                  <option></option>
+                                  <option>..</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Sucursal</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Bogotá</option>
+                                  <option>Barranquilla</option>
+                                  <option>Medellín</option>
+                                  <option>Bucaramanga</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="validationDefaultUsername" class="form-label">Jefe del Área</label>
+                              <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                <input type="search" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <label for="validationDefaultUsername" class="form-label">Documento a Firmar</label>
+                                <input type="file" class="form-control" aria-label="file example" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer col-12">
+                            <button class="btn-style" type="submit">Reasignar</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Formulario para ingresar nuevos activos a la plataforma-->
+            <div class="modal fade" id="NuevoActivo" tabindex="-1" aria-labelledby="NuevoActivo" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Agregar Nuevo Activo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <label for="validationDefault04" class="form-label">Tipo de Activo</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Computador</option>
+                                  <option>Diadema</option>
+                                  <option>Celular</option>
+                                  <option>Pantalla</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="validationDefault02" class="form-label">Modelo</label>
+                              <input type="text" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationDefault02" class="form-label">Placa Kaeser</label>
+                                <input type="text" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Marca</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Samsung</option>
+                                  <option>HP</option>
+                                  <option>CAT</option>
+                                  <option>LG</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault02" class="form-label">Serial</label>
+                                <input type="text" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Estado</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>EN TRÁNSITO</option>
+                                  <option>ENTREGADO</option>
+                                  <option>ACTIVO</option>
+                                  <option>EN OFICINA TECNOLOGÍA</option>
+                                  <option>EN BODEGA TECNOLOGÍA</option>
+                                  <option>OBSOLETO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault02" class="form-label">IMEI 1</label>
+                                <input type="number" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault02" class="form-label">IMEI 2</label>
+                                <input type="number" class="form-control" id="validationDefault02" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationDefault04" class="form-label">Sucursal</label>
+                                <select class="form-select" id="validationDefault04" required>
+                                  <option selected disabled value="">Seleccione</option>
+                                  <option>Bogotá</option>
+                                  <option>Barranquilla</option>
+                                  <option>Medellín</option>
+                                  <option>Bucaramanga</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="validationDefaultUsername" class="form-label">Subir imagen del activo</label>
+                                <input type="file" class="form-control" aria-label="file example" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer col-12">
+                            <button class="btn-style" type="submit">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="activos">
+            <h3>Estos son los activos con los que cuentas</h3>
+            <!--Tarjetas para los datos de los activos-->
+            <div id="activos" class="cards">
+                <div class="card" style="width: 17rem;">
+                    <img src="https://electroferia.com/wp-content/uploads/2023/10/1-COMPUTADOR-HP-DQ-0500LA-CELERON.jpg" class="card-img-top" alt="imagen" id="imagenActivo">
+                    <div class="card-body">
+                      <h5 id="nombreActivo" class="card-title">Card title</h5>
+                      <p id="descripcionActivo" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <div class="buttons">
+                        <!--Botón para mirar la información general del activo-->
+                        <button type="button" id="informacion" class="btn-style" data-bs-toggle="modal" data-bs-target="#InformacionActivo" data-bs-whatever="@mdo">Información</button>
+                        <!--Botón para subir el informe-->
+                        <button type="button" id="informe" class="btn-style" data-bs-toggle="modal" data-bs-target="#InformeActivo" data-bs-whatever="@mdo">Informe</button> 
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <!--Botón para hacer reportes si se encuentra algún error-->
+                <button type="button" id="reporte" class="btn-style" data-bs-toggle="modal" data-bs-target="#ReporteActivo" data-bs-whatever="@mdo">Reporte</button>
+                <!--Botón para hacer mirar el inventario general de la plataforma-->
+                <button type="button" id="inventario" class="btn-style" data-bs-toggle="modal" data-bs-target="#Inventario" data-bs-whatever="@mdo">Inventario</button>
+            </div>
+            <div class="forms">
+                <!--Apartado para mirar la información general del activo-->
+                <div class="modal fade" id="InformacionActivo" tabindex="-1" aria-labelledby="InformacionActivo" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!--Apartado para subir el informe del activo-->
+                <div class="modal fade" id="InformeActivo" tabindex="-1" aria-labelledby="InformeActivo" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!--Apartado para mirar hacer reportes sobre algún error-->
+                <div class="modal fade" id="ReporteActivo" tabindex="-1" aria-labelledby="ReporteActivo" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!--Apartado para mirar la información general de activos de la plataforma-->
+                <div class="modal fade" id="Inventario" tabindex="-1" aria-labelledby="Inventario" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
